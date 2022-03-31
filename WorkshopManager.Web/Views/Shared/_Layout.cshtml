@@ -2,16 +2,37 @@
 
 <html>
 <head>
-    <link />
+    
     <script src="~/node_modules/jquery/dist/jquery.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/js/global.js"></script>
+    <link href="~/styling/global.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Piston Power</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    </nav>
+    <div class="">
         @RenderBody()
     </div>
+    <footer class="navbar fixed-bottom bg-dark">
+        <p id="footer-text" class="navbar-brand text-white" style="margin-left: 50px; font-family: Source Sans Pro;">
+            Part of the RabsoInc Abacus Software Family - Copyrite
+        </p>
+    </footer>
 </body>
 </html>
+<script>
+$(document).ready(function() {
+    appendCurrentYear("footer-text");
+});
+</script>

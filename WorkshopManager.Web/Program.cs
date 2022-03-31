@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.DataServices;
 using WorkshopManager.Models.Identity.BaseModels;
+using WorkshopManager.Repository.Implementation;
+using WorkshopManager.Repository.IRepository;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -19,12 +21,14 @@ builder.Services.AddMvc(o =>
     o.Filters.Add(new AuthorizeFilter(policy));
 });
 builder.Services.ConfigureApplicationCookie(options => { options.LoginPath = "/Access/Login"; });
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
+app.UseDefaultFiles();
 app.UseNodeModules();
 app.UseEndpoints(endpoints =>
 {

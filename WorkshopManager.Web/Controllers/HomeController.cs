@@ -1,14 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WorkshopManager.Models.System.ViewModels;
+using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Support.Dashboard;
 
 namespace WorkshopManager.Web.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork db;
+
+        public HomeController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            DashboardHomeViewModel model = new DashboardHomeViewModel();
+            model.ReleaseNote = db.ReleaseNoteRepository.GetLatestReleaseNote();
+            model.DashboardMetrics = Metrics.ReturnMetrics();
+            return View(model);
         }
     }
 }

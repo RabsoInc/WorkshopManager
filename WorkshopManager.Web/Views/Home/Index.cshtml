@@ -1,7 +1,29 @@
-﻿
+﻿@model DashboardHomeViewModel;
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
+<div class="p-4">
+    <div>
+        <div class="card">
+            <div class="card-header" style="font-weight: bold">Latest Patch Notes</div>
+            <div class="card-body">
+                <p>
+                    Version @Model.ReleaseNote.ReleaseVersion | @Model.ReleaseNote.ReleaseDate | @Model.ReleaseNote.ReleaseNoteDetails
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 d-flex justify-content-center">
+        <div class = "row">
+            @foreach(var metric in @Model.DashboardMetrics)
+            {
+            <div class="col-3 d-flex justify-content-center mt-2">
+                <span class="dahboard-circle">@metric.Text <br /> @metric.Value</span>
+            </div>
+            }
+        </div>
+    </div>
+</div>

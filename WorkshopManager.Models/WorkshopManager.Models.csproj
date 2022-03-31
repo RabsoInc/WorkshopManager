@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Identity\ViewModels\" />
-    <Folder Include="System\ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

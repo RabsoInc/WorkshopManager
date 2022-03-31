@@ -7,10 +7,12 @@ namespace WorkshopManager.DataServices
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
+        public DbSet<ReleaseNote> ReleaseNotes { get; set; }
         public DbSet<SystemAttribute> SystemAttributes { get; set; }
+
     }
 }

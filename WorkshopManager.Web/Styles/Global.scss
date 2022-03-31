@@ -1,0 +1,26 @@
+﻿$primary: #1B4B5A;
+$primary: #ff0000;
+$secondary: #F4EBDB;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Source Sans Pro;
+}
+
+.dahboard-circle {
+    height: 250px;
+    width: 250px;
+    background-color: steelblue;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 24px;
+    @extend .text-white;
+    @extend .d-flex;
+    @extend .justify-content-center;
+    @extend .align-items-center;
+    @extend .input-group-text;
+}
