@@ -13,6 +13,6 @@ namespace WorkshopManager.DataServices
 
         public DbSet<ReleaseNote> ReleaseNotes { get; set; }
         public DbSet<SystemAttribute> SystemAttributes { get; set; }
-
+        public DbSet<SystemAttributeValue> SystemAttributeValues { get; set; }
     }
 }

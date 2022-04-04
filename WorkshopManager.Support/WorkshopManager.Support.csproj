@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mapcodes\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WorkshopManager.Models\WorkshopManager.Models.csproj" />
   </ItemGroup>
 

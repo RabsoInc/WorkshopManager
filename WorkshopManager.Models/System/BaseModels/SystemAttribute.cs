@@ -11,12 +11,12 @@ namespace WorkshopManager.Models.System.BaseModels
         [Required]
         [MaxLength(100)]
         [Display(Name = "Attribute Name")]
-        public string AttributeName{ get; set; }
+        public string AttributeName { get; set; }
 
         [Required]
         [MaxLength(125)]
-        [Display(Name = "Map Code")]
+        [Display(Name = "Mapcode")]
         [ValidateNever]
-        public string MapCode { get; set; }
+        public string Mapcode { get; set; }
     }
 }

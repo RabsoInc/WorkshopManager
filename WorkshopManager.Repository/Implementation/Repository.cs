@@ -26,16 +26,30 @@ namespace WorkshopManager.Repository.Implementation
             dbSet.Remove(entity);
         }
 
-        public IEnumerable<T> GetAllRecords()
+        public IEnumerable<T> GetAllRecords(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query.Include(includeProp);
+                }
+            }
             return query.ToList();
         }
 
-        public T GetSingleRecord(Expression<Func<T, bool>> filter)
+        public T GetSingleRecord(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+            if (includeProperties != null)
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
         }
 

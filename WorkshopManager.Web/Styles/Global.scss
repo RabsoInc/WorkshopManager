@@ -24,3 +24,33 @@ body {
     @extend .align-items-center;
     @extend .input-group-text;
 }
+
+.form-submit {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .text-white;
+    width: 100%;
+}
+
+.table-edit {
+    @extend .btn; 
+    @extend .btn-outline-primary
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 1.5em;
+    border-radius: 40px;
+    padding: 3px;
+}
+
+select {
+    border-radius: 30px;
+    word-wrap: normal;
+    padding: 0px;
+    text-align: center;
+}
+
+form select {
+    border-radius: 0px;
+    text-align: left;
+}

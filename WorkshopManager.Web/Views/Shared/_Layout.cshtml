@@ -2,13 +2,13 @@
 
 <html>
 <head>
-    
+    <link href="~/styling/global.css" rel="stylesheet">
+    <link href="~/node_modules/datatables.net-dt/css/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="~/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
     <script src="~/node_modules/jquery/dist/jquery.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
     <script src="~/js/global.js"></script>
-    <link href="~/styling/global.css" rel="stylesheet">
-
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 </head>
@@ -20,6 +20,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
+    <ul class="navbar-nav" style="margin-right: 100px;">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            System Setup
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" asp-controller="SystemAttribute" asp-action="Manage">System Attributes</a></li>
+                <li><a class="dropdown-item" asp-controller="SystemAttributeValue" asp-action="Manage">System Attribute Values</a></li>
+            </ul>
+        </li>
+    </ul>
     </nav>
     <div class="">
         @RenderBody()

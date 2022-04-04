@@ -11,13 +11,15 @@ namespace WorkshopManager.Repository.Implementation
         public UnitOfWork(ApplicationDbContext db)
         {
             this.db = db;
-            SystemAttributeRepository = new SystemAttributeRepository(db);
             ReleaseNoteRepository = new ReleaseNoteRepository(db);
+            SystemAttributeRepository = new SystemAttributeRepository(db);
+            SystemAttributeValueRepository = new SystemAttributeValueRepository(db);
         }
 
         //Interface Registration
-        public ISystemAttribute SystemAttributeRepository { get; private set; }
         public IReleaseNote ReleaseNoteRepository { get; private set; }
+        public ISystemAttribute SystemAttributeRepository { get; private set; }
+        public ISystemAttributeValue SystemAttributeValueRepository { get; private set; }
 
         //Global Methods
         public void UpdateDatabase()

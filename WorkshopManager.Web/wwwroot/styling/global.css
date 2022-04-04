@@ -2494,7 +2494,7 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+.btn-check[disabled] + .btn, .btn-check[disabled] + .table-edit, .btn-check[disabled] + .form-submit, .btn-check:disabled + .btn, .btn-check:disabled + .table-edit, .btn-check:disabled + .form-submit {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2653,11 +2653,11 @@ textarea.form-control-lg {
 .input-group > .form-select:focus {
   z-index: 3;
 }
-.input-group .btn {
+.input-group .btn, .input-group .table-edit, .input-group .form-submit {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus {
+.input-group .btn:focus, .input-group .table-edit:focus, .input-group .form-submit:focus {
   z-index: 3;
 }
 
@@ -2680,7 +2680,9 @@ textarea.form-control-lg {
 .input-group-lg > .form-select,
 .input-group-lg > .input-group-text,
 .input-group-lg > .dahboard-circle,
-.input-group-lg > .btn {
+.input-group-lg > .btn,
+.input-group-lg > .table-edit,
+.input-group-lg > .form-submit {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -2690,7 +2692,9 @@ textarea.form-control-lg {
 .input-group-sm > .form-select,
 .input-group-sm > .input-group-text,
 .input-group-sm > .dahboard-circle,
-.input-group-sm > .btn {
+.input-group-sm > .btn,
+.input-group-sm > .table-edit,
+.input-group-sm > .form-submit {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
@@ -2895,7 +2899,7 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
-.btn {
+.btn, .table-edit, .form-submit {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
@@ -2913,47 +2917,47 @@ textarea.form-control-lg {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .btn {
+  .btn, .table-edit, .form-submit {
     transition: none;
   }
 }
-.btn:hover {
+.btn:hover, .table-edit:hover, .form-submit:hover {
   color: #212529;
 }
-.btn-check:focus + .btn, .btn:focus {
+.btn-check:focus + .btn, .btn-check:focus + .table-edit, .btn-check:focus + .form-submit, .btn:focus, .table-edit:focus, .form-submit:focus {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
 }
-.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+.btn:disabled, .table-edit:disabled, .form-submit:disabled, .btn.disabled, .disabled.table-edit, .disabled.form-submit, fieldset:disabled .btn, fieldset:disabled .table-edit, fieldset:disabled .form-submit {
   pointer-events: none;
   opacity: 0.65;
 }
 
-.btn-primary {
+.btn-primary, .form-submit {
   color: #000;
   background-color: #ff0000;
   border-color: #ff0000;
 }
-.btn-primary:hover {
+.btn-primary:hover, .form-submit:hover {
   color: #000;
   background-color: #ff2626;
   border-color: #ff1a1a;
 }
-.btn-check:focus + .btn-primary, .btn-primary:focus {
+.btn-check:focus + .btn-primary, .btn-check:focus + .form-submit, .btn-primary:focus, .form-submit:focus {
   color: #000;
   background-color: #ff2626;
   border-color: #ff1a1a;
   box-shadow: 0 0 0 0.25rem rgba(217, 0, 0, 0.5);
 }
-.btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+.btn-check:checked + .btn-primary, .btn-check:checked + .form-submit, .btn-check:active + .btn-primary, .btn-check:active + .form-submit, .btn-primary:active, .form-submit:active, .btn-primary.active, .active.form-submit, .show > .btn-primary.dropdown-toggle, .show > .dropdown-toggle.form-submit {
   color: #000;
   background-color: #ff3333;
   border-color: #ff1a1a;
 }
-.btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
+.btn-check:checked + .btn-primary:focus, .btn-check:checked + .form-submit:focus, .btn-check:active + .btn-primary:focus, .btn-check:active + .form-submit:focus, .btn-primary:active:focus, .form-submit:active:focus, .btn-primary.active:focus, .active.form-submit:focus, .show > .btn-primary.dropdown-toggle:focus, .show > .dropdown-toggle.form-submit:focus {
   box-shadow: 0 0 0 0.25rem rgba(217, 0, 0, 0.5);
 }
-.btn-primary:disabled, .btn-primary.disabled {
+.btn-primary:disabled, .form-submit:disabled, .btn-primary.disabled, .disabled.form-submit {
   color: #000;
   background-color: #ff0000;
   border-color: #ff0000;
@@ -3169,27 +3173,27 @@ textarea.form-control-lg {
   border-color: #212529;
 }
 
-.btn-outline-primary {
+.btn-outline-primary, .table-edit {
   color: #ff0000;
   border-color: #ff0000;
 }
-.btn-outline-primary:hover {
+.btn-outline-primary:hover, .table-edit:hover {
   color: #000;
   background-color: #ff0000;
   border-color: #ff0000;
 }
-.btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
+.btn-check:focus + .btn-outline-primary, .btn-check:focus + .table-edit, .btn-outline-primary:focus, .table-edit:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
 }
-.btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
+.btn-check:checked + .btn-outline-primary, .btn-check:checked + .table-edit, .btn-check:active + .btn-outline-primary, .btn-check:active + .table-edit, .btn-outline-primary:active, .table-edit:active, .btn-outline-primary.active, .active.table-edit, .btn-outline-primary.dropdown-toggle.show, .dropdown-toggle.show.table-edit {
   color: #000;
   background-color: #ff0000;
   border-color: #ff0000;
 }
-.btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
+.btn-check:checked + .btn-outline-primary:focus, .btn-check:checked + .table-edit:focus, .btn-check:active + .btn-outline-primary:focus, .btn-check:active + .table-edit:focus, .btn-outline-primary:active:focus, .table-edit:active:focus, .btn-outline-primary.active:focus, .active.table-edit:focus, .btn-outline-primary.dropdown-toggle.show:focus, .dropdown-toggle.show.table-edit:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.5);
 }
-.btn-outline-primary:disabled, .btn-outline-primary.disabled {
+.btn-outline-primary:disabled, .table-edit:disabled, .btn-outline-primary.disabled, .disabled.table-edit {
   color: #ff0000;
   background-color: transparent;
 }
@@ -3381,13 +3385,13 @@ textarea.form-control-lg {
   color: #6c757d;
 }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > .table-edit, .btn-group-lg > .form-submit {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
 }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .table-edit, .btn-group-sm > .form-submit {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
@@ -3742,23 +3746,47 @@ textarea.form-control-lg {
   display: inline-flex;
   vertical-align: middle;
 }
-.btn-group > .btn,
-.btn-group-vertical > .btn {
+.btn-group > .btn, .btn-group > .table-edit, .btn-group > .form-submit,
+.btn-group-vertical > .btn,
+.btn-group-vertical > .table-edit,
+.btn-group-vertical > .form-submit {
   position: relative;
   flex: 1 1 auto;
 }
-.btn-group > .btn-check:checked + .btn,
+.btn-group > .btn-check:checked + .btn, .btn-group > .btn-check:checked + .table-edit, .btn-group > .btn-check:checked + .form-submit,
 .btn-group > .btn-check:focus + .btn,
+.btn-group > .btn-check:focus + .table-edit,
+.btn-group > .btn-check:focus + .form-submit,
 .btn-group > .btn:hover,
+.btn-group > .table-edit:hover,
+.btn-group > .form-submit:hover,
 .btn-group > .btn:focus,
+.btn-group > .table-edit:focus,
+.btn-group > .form-submit:focus,
 .btn-group > .btn:active,
+.btn-group > .table-edit:active,
+.btn-group > .form-submit:active,
 .btn-group > .btn.active,
+.btn-group > .active.table-edit,
+.btn-group > .active.form-submit,
 .btn-group-vertical > .btn-check:checked + .btn,
+.btn-group-vertical > .btn-check:checked + .table-edit,
+.btn-group-vertical > .btn-check:checked + .form-submit,
 .btn-group-vertical > .btn-check:focus + .btn,
+.btn-group-vertical > .btn-check:focus + .table-edit,
+.btn-group-vertical > .btn-check:focus + .form-submit,
 .btn-group-vertical > .btn:hover,
+.btn-group-vertical > .table-edit:hover,
+.btn-group-vertical > .form-submit:hover,
 .btn-group-vertical > .btn:focus,
+.btn-group-vertical > .table-edit:focus,
+.btn-group-vertical > .form-submit:focus,
 .btn-group-vertical > .btn:active,
-.btn-group-vertical > .btn.active {
+.btn-group-vertical > .table-edit:active,
+.btn-group-vertical > .form-submit:active,
+.btn-group-vertical > .btn.active,
+.btn-group-vertical > .active.table-edit,
+.btn-group-vertical > .active.form-submit {
   z-index: 1;
 }
 
@@ -3771,18 +3799,24 @@ textarea.form-control-lg {
   width: auto;
 }
 
-.btn-group > .btn:not(:first-child),
+.btn-group > .btn:not(:first-child), .btn-group > .table-edit:not(:first-child), .btn-group > .form-submit:not(:first-child),
 .btn-group > .btn-group:not(:first-child) {
   margin-left: -1px;
 }
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group > .btn-group:not(:last-child) > .btn {
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .table-edit:not(:last-child):not(.dropdown-toggle), .btn-group > .form-submit:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn,
+.btn-group > .btn-group:not(:last-child) > .table-edit,
+.btn-group > .btn-group:not(:last-child) > .form-submit {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.btn-group > .btn:nth-child(n+3),
+.btn-group > .btn:nth-child(n+3), .btn-group > .table-edit:nth-child(n+3), .btn-group > .form-submit:nth-child(n+3),
 .btn-group > :not(.btn-check) + .btn,
-.btn-group > .btn-group:not(:first-child) > .btn {
+.btn-group > :not(.btn-check) + .table-edit,
+.btn-group > :not(.btn-check) + .form-submit,
+.btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn-group:not(:first-child) > .table-edit,
+.btn-group > .btn-group:not(:first-child) > .form-submit {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -3798,12 +3832,12 @@ textarea.form-control-lg {
   margin-right: 0;
 }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .table-edit + .dropdown-toggle-split, .btn-group-sm > .form-submit + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .table-edit + .dropdown-toggle-split, .btn-group-lg > .form-submit + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
@@ -3813,21 +3847,25 @@ textarea.form-control-lg {
   align-items: flex-start;
   justify-content: center;
 }
-.btn-group-vertical > .btn,
+.btn-group-vertical > .btn, .btn-group-vertical > .table-edit, .btn-group-vertical > .form-submit,
 .btn-group-vertical > .btn-group {
   width: 100%;
 }
-.btn-group-vertical > .btn:not(:first-child),
+.btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > .table-edit:not(:first-child), .btn-group-vertical > .form-submit:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: -1px;
 }
-.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group-vertical > .btn-group:not(:last-child) > .btn {
+.btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .table-edit:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > .form-submit:not(:last-child):not(.dropdown-toggle),
+.btn-group-vertical > .btn-group:not(:last-child) > .btn,
+.btn-group-vertical > .btn-group:not(:last-child) > .table-edit,
+.btn-group-vertical > .btn-group:not(:last-child) > .form-submit {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.btn-group-vertical > .btn ~ .btn,
-.btn-group-vertical > .btn-group:not(:first-child) > .btn {
+.btn-group-vertical > .btn ~ .btn, .btn-group-vertical > .table-edit ~ .btn, .btn-group-vertical > .btn ~ .table-edit, .btn-group-vertical > .table-edit ~ .table-edit, .btn-group-vertical > .form-submit ~ .btn, .btn-group-vertical > .form-submit ~ .table-edit, .btn-group-vertical > .btn ~ .form-submit, .btn-group-vertical > .table-edit ~ .form-submit, .btn-group-vertical > .form-submit ~ .form-submit,
+.btn-group-vertical > .btn-group:not(:first-child) > .btn,
+.btn-group-vertical > .btn-group:not(:first-child) > .table-edit,
+.btn-group-vertical > .btn-group:not(:first-child) > .form-submit {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -4800,7 +4838,7 @@ textarea.form-control-lg {
   display: none;
 }
 
-.btn .badge {
+.btn .badge, .table-edit .badge, .form-submit .badge {
   position: relative;
   top: -1px;
 }
@@ -6239,7 +6277,7 @@ textarea.form-control-lg {
   background-color: currentColor;
   opacity: 0.5;
 }
-.placeholder.btn::before {
+.placeholder.btn::before, .placeholder.table-edit::before, .placeholder.form-submit::before {
   display: inline-block;
   content: "";
 }
@@ -7602,7 +7640,7 @@ textarea.form-control-lg {
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
 }
 
-.text-white, .dahboard-circle {
+.text-white, .form-submit, .dahboard-circle {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
 }
@@ -11134,4 +11172,26 @@ body {
   border-radius: 50%;
   display: inline-block;
   font-size: 24px;
+}
+
+.form-submit {
+  width: 100%;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  margin-left: 1.5em;
+  border-radius: 40px;
+  padding: 3px;
+}
+
+select {
+  border-radius: 30px;
+  word-wrap: normal;
+  padding: 0px;
+  text-align: center;
+}
+
+form select {
+  border-radius: 0px;
+  text-align: left;
 }
