@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using WorkshopManager.DataServices;
 using WorkshopManager.Models.Identity.BaseModels;
-using WorkshopManager.Repository.Implementation;
-using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Repository.Implementation.Global;
+using WorkshopManager.Repository.IRepository.Global;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;

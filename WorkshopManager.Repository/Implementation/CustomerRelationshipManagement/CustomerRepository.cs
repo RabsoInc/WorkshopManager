@@ -1,9 +1,10 @@
 ﻿using WorkshopManager.DataServices;
 using WorkshopManager.Models.CustomerRelationshipManagement.BaseModels;
 using WorkshopManager.Models.System.BaseModels;
-using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Repository.Implementation.Global;
+using WorkshopManager.Repository.IRepository.CustomerRelationshipManagement;
 
-namespace WorkshopManager.Repository.Implementation
+namespace WorkshopManager.Repository.Implementation.CustomerRelationshipManagement
 {
     public class CustomerRepository : Repository<Customer>, ICustomer
     {

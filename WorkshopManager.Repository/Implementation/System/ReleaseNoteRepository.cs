@@ -1,8 +1,9 @@
 ﻿using WorkshopManager.DataServices;
 using WorkshopManager.Models.System.BaseModels;
-using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Repository.Implementation.Global;
+using WorkshopManager.Repository.IRepository.System;
 
-namespace WorkshopManager.Repository.Implementation
+namespace WorkshopManager.Repository.Implementation.System
 {
     public class ReleaseNoteRepository : Repository<ReleaseNote>, IReleaseNote
     {

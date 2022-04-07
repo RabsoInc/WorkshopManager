@@ -32,6 +32,12 @@ body {
     width: 100%;
 }
 
+.table-default{
+    @extend .table;
+    @extend .table-bordered;
+    @extend .table-striped;
+}
+
 .table-edit {
     @extend .btn; 
     @extend .btn-outline-primary

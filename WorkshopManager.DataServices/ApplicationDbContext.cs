@@ -17,6 +17,7 @@ namespace WorkshopManager.DataServices
             base.OnModelCreating(builder);
         }
 
+        public DbSet<ControllerViewMapping> ControllerViewMappings { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ReleaseNote> ReleaseNotes { get; set; }
     }

@@ -1946,7 +1946,7 @@ progress {
     --bs-gutter-y: 3rem;
   }
 }
-.table {
+.table, .table-default {
   --bs-table-bg: transparent;
   --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #212529;
@@ -1961,19 +1961,19 @@ progress {
   vertical-align: top;
   border-color: #dee2e6;
 }
-.table > :not(caption) > * > * {
+.table > :not(caption) > * > *, .table-default > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
 }
-.table > tbody {
+.table > tbody, .table-default > tbody {
   vertical-align: inherit;
 }
-.table > thead {
+.table > thead, .table-default > thead {
   vertical-align: bottom;
 }
-.table > :not(:first-child) {
+.table > :not(:first-child), .table-default > :not(:first-child) {
   border-top: 2px solid currentColor;
 }
 
@@ -1985,10 +1985,10 @@ progress {
   padding: 0.25rem 0.25rem;
 }
 
-.table-bordered > :not(caption) > * {
+.table-bordered > :not(caption) > *, .table-default > :not(caption) > * {
   border-width: 1px 0;
 }
-.table-bordered > :not(caption) > * > * {
+.table-bordered > :not(caption) > * > *, .table-default > :not(caption) > * > * {
   border-width: 0 1px;
 }
 
@@ -1999,7 +1999,7 @@ progress {
   border-top-width: 0;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd) > * {
+.table-striped > tbody > tr:nth-of-type(odd) > *, .table-default > tbody > tr:nth-of-type(odd) > * {
   --bs-table-accent-bg: var(--bs-table-striped-bg);
   color: var(--bs-table-striped-color);
 }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WorkshopManager.DataServices;
-using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Repository.IRepository.Global;
 
-namespace WorkshopManager.Repository.Implementation
+namespace WorkshopManager.Repository.Implementation.Global
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -173,7 +173,7 @@ namespace WorkshopManager.DataServices.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("WorkshopManager.Models.Identity.BaseModels.ApplicationUser", b =>
@@ -251,6 +251,29 @@ namespace WorkshopManager.DataServices.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.ControllerViewMapping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ControllerViewMappings");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.ReleaseNote", b =>
                 {
                     b.Property<Guid>("Id")
@@ -272,7 +295,7 @@ namespace WorkshopManager.DataServices.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReleaseNotes", (string)null);
+                    b.ToTable("ReleaseNotes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

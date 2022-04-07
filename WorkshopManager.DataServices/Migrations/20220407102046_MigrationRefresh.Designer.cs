@@ -12,8 +12,8 @@ using WorkshopManager.DataServices;
 namespace WorkshopManager.DataServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220331131936_AddedReleaseNotes")]
-    partial class AddedReleaseNotes
+    [Migration("20220407102046_MigrationRefresh")]
+    partial class MigrationRefresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -157,6 +157,27 @@ namespace WorkshopManager.DataServices.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.CustomerRelationshipManagement.BaseModels.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.Identity.BaseModels.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -232,6 +253,29 @@ namespace WorkshopManager.DataServices.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.ControllerViewMapping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ControllerViewMappings");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.ReleaseNote", b =>
                 {
                     b.Property<Guid>("Id")
@@ -246,30 +290,14 @@ namespace WorkshopManager.DataServices.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReleaseVersion")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.HasKey("Id");
 
                     b.ToTable("ReleaseNotes");
-                });
-
-            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.SystemAttribute", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AttributeName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("MapCode")
-                        .IsRequired()
-                        .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SystemAttributes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

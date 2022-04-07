@@ -1,0 +1,94 @@
+﻿@model ControllerViewMappingViewModel
+
+@{
+    ViewData["Title"] = "Manage";
+}
+
+@*Header title*@
+<div class="p-4">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createControllerMappingModal">
+        <i class="bi bi-plus-circle"> Create a new controller and view mapping</i>
+    </button>
+    <hr />
+
+@*Table for all controller view mapping entities*@
+<table class="table-default" id="tblControllerViewMapping">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Controller</th>
+            <th>Action</th>
+            <th>Path</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var entity in @Model.AllControllerViewMappings)
+            {
+                <tr>
+                    <td>@entity.Id.ToString().ToUpper()</td>
+                    <td>@entity.Controller</td>
+                    <td>@entity.Action</td>
+                    <td>@entity.Path</td>
+                    <th></th>
+                </tr>
+            }
+        </tbody>
+</table>
+
+</div>
+@*Modal window*@
+ <div class="modal fade" id="createControllerMappingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalHeader">Controller & View Mapping</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="mt-4">
+                <form method="post" asp-controller="ControllerViewMapping" asp-action="Manage">
+                    <input asp-for="@Model.ManageControllerViewMapping.Id" hidden/>
+                    <div class="mb-3">
+                        <label asp-for="@Model.ManageControllerViewMapping.Controller" class="form-label"></label>
+                        <input asp-for="@Model.ManageControllerViewMapping.Controller" class="form-control" id="txtController"
+                        onchange="validateSubmitButton()"/>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="@Model.ManageControllerViewMapping.Action" class="form-label"></label>
+                        <input asp-for="@Model.ManageControllerViewMapping.Action" class="form-control" id="txtAction"
+                        onchange="validateSubmitButton()"/>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="@Model.ManageControllerViewMapping.Path" class="form-label"></label>
+                        <input asp-for="@Model.ManageControllerViewMapping.Path" class="form-control" id="txtPath"
+                            onchange="validateSubmitButton()"/>
+                        <label>Example: ~/Views/CustomerRelationshipManagement/Customer/Index.cshtml</label>
+                    </div>
+                    <button class="form-submit" id="btnSubmit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btnSubmit').prop('disabled', true);
+        validateSubmitButton();
+        loadDataTableWithSearchAndPagination($('#tblControllerViewMapping'));
+    });
+
+    function validateSubmitButton(){
+        var controllerVal = validateString($('#txtController').val());
+        var actionVal = validateString($('#txtAction').val());
+        var pathVal = validateString($('#txtPath').val());
+        if(controllerVal == "1" && actionVal == "1" && pathVal == "1")
+        {
+            $('#btnSubmit').prop('disabled', false);
+        }
+        else
+        {
+            $('#btnSubmit').prop('disabled', true);
+        }
+    }
+</script>

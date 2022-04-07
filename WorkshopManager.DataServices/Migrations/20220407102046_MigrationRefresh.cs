@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WorkshopManager.DataServices.Migrations
 {
-    public partial class InitialBuild : Migration
+    public partial class MigrationRefresh : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,16 +51,44 @@ namespace WorkshopManager.DataServices.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SystemAttributes",
+                name: "ControllerViewMappings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AttributeName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    MapCode = table.Column<string>(type: "nvarchar(125)", maxLength: 125, nullable: false)
+                    Controller = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SystemAttributes", x => x.Id);
+                    table.PrimaryKey("PK_ControllerViewMappings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReleaseNotes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReleaseVersion = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ReleaseDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReleaseNoteDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReleaseNotes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,7 +255,13 @@ namespace WorkshopManager.DataServices.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "SystemAttributes");
+                name: "ControllerViewMappings");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "ReleaseNotes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

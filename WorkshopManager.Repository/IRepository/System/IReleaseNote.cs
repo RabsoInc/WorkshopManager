@@ -1,6 +1,7 @@
 ﻿using WorkshopManager.Models.System.BaseModels;
+using WorkshopManager.Repository.IRepository.Global;
 
-namespace WorkshopManager.Repository.IRepository
+namespace WorkshopManager.Repository.IRepository.System
 {
     public interface IReleaseNote : IRepository<ReleaseNote>
     {

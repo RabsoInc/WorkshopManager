@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopManager.Models.System.ViewModels;
-using WorkshopManager.Repository.IRepository;
+using WorkshopManager.Repository.IRepository.Global;
 using WorkshopManager.Support.Dashboard;
 
-namespace WorkshopManager.Web.Controllers
+namespace WorkshopManager.Web.Controllers.Global
 {
     [AllowAnonymous]
     public class HomeController : Controller
