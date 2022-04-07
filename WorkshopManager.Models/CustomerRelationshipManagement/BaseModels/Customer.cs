@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WorkshopManager.Models.System.BaseModels;
 
 namespace WorkshopManager.Models.CustomerRelationshipManagement.BaseModels
 {
@@ -16,5 +17,8 @@ namespace WorkshopManager.Models.CustomerRelationshipManagement.BaseModels
         [Display(Name = "Last Name")]
         [MaxLength(50)]
         public string LastName { get; set; }
+
+        public Guid GenderId { get; set; }
+        public Gender Gender { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace WorkshopManager.Web.Controllers.System
                 db.ControllerViewMappingRepository.UpdateRecord(model.ManageControllerViewMapping);
             }
             db.UpdateDatabase();
-            return View(defaultPath, model);
+            return RedirectToAction("Manage");
         }
     }
 }

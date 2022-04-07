@@ -7,6 +7,7 @@ namespace WorkshopManager.Repository.IRepository.Global
     {
         IControllerViewMapping ControllerViewMappingRepository { get; }
         ICustomer CustomerRepository { get; }
+        IGender GenderRepository { get; }
         IReleaseNote ReleaseNoteRepository { get; }
         void UpdateDatabase();
     }

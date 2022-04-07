@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WorkshopManager.DataServices.Migrations
 {
-    public partial class MigrationRefresh : Migration
+    public partial class InitialBuild : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,16 +65,15 @@ namespace WorkshopManager.DataServices.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "Genders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Genders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,6 +196,26 @@ namespace WorkshopManager.DataServices.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    GenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_Genders_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "Genders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -235,6 +254,12 @@ namespace WorkshopManager.DataServices.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_GenderId",
+                table: "Customers",
+                column: "GenderId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -268,6 +293,9 @@ namespace WorkshopManager.DataServices.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Genders");
         }
     }
 }

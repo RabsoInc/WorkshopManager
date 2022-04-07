@@ -12,8 +12,8 @@ using WorkshopManager.DataServices;
 namespace WorkshopManager.DataServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220407102046_MigrationRefresh")]
-    partial class MigrationRefresh
+    [Migration("20220407134308_InitialBuild")]
+    partial class InitialBuild
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,12 +168,18 @@ namespace WorkshopManager.DataServices.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid>("GenderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GenderId")
+                        .IsUnique();
 
                     b.ToTable("Customers");
                 });
@@ -276,6 +282,22 @@ namespace WorkshopManager.DataServices.Migrations
                     b.ToTable("ControllerViewMappings");
                 });
 
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.Gender", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+                });
+
             modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.ReleaseNote", b =>
                 {
                     b.Property<Guid>("Id")
@@ -348,6 +370,23 @@ namespace WorkshopManager.DataServices.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.CustomerRelationshipManagement.BaseModels.Customer", b =>
+                {
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.Gender", "Gender")
+                        .WithOne("Customer")
+                        .HasForeignKey("WorkshopManager.Models.CustomerRelationshipManagement.BaseModels.Customer", "GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gender");
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.Gender", b =>
+                {
+                    b.Navigation("Customer")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
