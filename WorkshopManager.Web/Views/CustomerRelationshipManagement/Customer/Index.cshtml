@@ -9,9 +9,7 @@
     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createCustomerModal">
         <i class="bi bi-plus-circle"> Create a new customer</i>
     </button>
-
     <hr />
-
     <div class="modal fade" id="createCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -22,12 +20,24 @@
                 <form method="post" asp-controller="customer" asp-action="create">
                     <div class="modal-body">
                         <div class="mb-3">
+                            <label asp-for="@Model.NewCustomer.Title.Description" class="form-label"></label>
+                            <select asp-for="@Model.NewCustomer.TitleId" asp-items="@ViewBag.Titles" class="form-select">
+                                <option disabled selected> -- Please select a title --</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label asp-for="@Model.NewCustomer.FirstName" class="form-label"></label>
                             <input asp-for="@Model.NewCustomer.FirstName" class="form-control" />
                         </div>
                         <div class="mb-3">
                             <label asp-for="@Model.NewCustomer.LastName" class="form-label"></label>
                             <input asp-for="@Model.NewCustomer.LastName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="@Model.NewCustomer.Gender.Description" class="form-label"></label>
+                            <select asp-for="@Model.NewCustomer.GenderId" asp-items="@ViewBag.Genders" class="form-select">
+                                <option disabled selected> -- Please select a gender --</option>
+                            </select>
                         </div>
                         <button type="submit" class="form-submit">
                             Save & Continue
@@ -38,4 +48,36 @@
             </div>
         </div>
     </div>
+    <table id="tblCustomer">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entity in @Model.AllCustomers)
+            {
+                <tr>
+                    <td>@entity.Id.ToString().ToUpper()</td>
+                    <td>@entity.Title.Description</td>
+                    <td>@entity.FirstName</td>
+                    <td>@entity.LastName</td>
+                    <td>@entity.Gender.Description</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+<script>
+    $(document).ready(function() { 
+        loadDataTableWithSearchAndPagination($('#tblCustomer'));
+        
+    });
+</script>
