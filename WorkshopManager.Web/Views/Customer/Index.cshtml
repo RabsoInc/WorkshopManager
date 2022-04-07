@@ -1,0 +1,42 @@
+﻿@model CustomerIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="p-4">
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createCustomerModal">
+        <i class="bi bi-plus-circle"> Create a new customer</i>
+    </button>
+
+    <hr />
+
+    <div class="modal fade" id="createCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHeader">Customer Creation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-controller="customer" asp-action="create">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label asp-for="@Model.NewCustomer.FirstName" class="form-label"></label>
+                            <input asp-for="@Model.NewCustomer.FirstName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="@Model.NewCustomer.LastName" class="form-label"></label>
+                            <input asp-for="@Model.NewCustomer.LastName" class="form-control" />
+                        </div>
+                        <button type="submit" class="form-submit">
+                            Save & Continue
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

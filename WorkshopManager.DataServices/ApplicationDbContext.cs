@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WorkshopManager.Models.CustomerRelationshipManagement.BaseModels;
 using WorkshopManager.Models.Identity.BaseModels;
 using WorkshopManager.Models.System.BaseModels;
 
@@ -11,8 +12,12 @@ namespace WorkshopManager.DataServices
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<ReleaseNote> ReleaseNotes { get; set; }
-        public DbSet<SystemAttribute> SystemAttributes { get; set; }
-        public DbSet<SystemAttributeValue> SystemAttributeValues { get; set; }
     }
 }

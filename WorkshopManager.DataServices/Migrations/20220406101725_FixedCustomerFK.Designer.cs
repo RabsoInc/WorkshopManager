@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopManager.DataServices;
 
@@ -11,9 +12,10 @@ using WorkshopManager.DataServices;
 namespace WorkshopManager.DataServices.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406101725_FixedCustomerFK")]
+    partial class FixedCustomerFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,14 +168,34 @@ namespace WorkshopManager.DataServices.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid>("GenderId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GenderIdId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<Guid>("TitleId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TitleIdId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.HasIndex("GenderId1");
+
+                    b.HasIndex("GenderIdId");
+
+                    b.HasIndex("TitleId1");
+
+                    b.HasIndex("TitleIdId");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("WorkshopManager.Models.Identity.BaseModels.ApplicationUser", b =>
@@ -272,7 +294,49 @@ namespace WorkshopManager.DataServices.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReleaseNotes", (string)null);
+                    b.ToTable("ReleaseNotes");
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.SystemAttribute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AttributeName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Mapcode")
+                        .IsRequired()
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SystemAttributes");
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AttributeValue")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("SystemAttributeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SystemAttributeId");
+
+                    b.ToTable("SystemAttributeValues");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -324,6 +388,52 @@ namespace WorkshopManager.DataServices.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.CustomerRelationshipManagement.BaseModels.Customer", b =>
+                {
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", "GenderId")
+                        .WithMany()
+                        .HasForeignKey("GenderIdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", "Title")
+                        .WithMany()
+                        .HasForeignKey("TitleId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", "TitleId")
+                        .WithMany()
+                        .HasForeignKey("TitleIdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gender");
+
+                    b.Navigation("GenderId");
+
+                    b.Navigation("Title");
+
+                    b.Navigation("TitleId");
+                });
+
+            modelBuilder.Entity("WorkshopManager.Models.System.BaseModels.SystemAttributeValue", b =>
+                {
+                    b.HasOne("WorkshopManager.Models.System.BaseModels.SystemAttribute", "SystemAttribute")
+                        .WithMany()
+                        .HasForeignKey("SystemAttributeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SystemAttribute");
                 });
 #pragma warning restore 612, 618
         }

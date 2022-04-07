@@ -2,9 +2,8 @@
 {
     public interface IUnitOfWork
     {
+        ICustomer CustomerRepository { get; }
         IReleaseNote ReleaseNoteRepository { get; }
-        ISystemAttribute SystemAttributeRepository { get; }
-        ISystemAttributeValue SystemAttributeValueRepository { get; }
         void UpdateDatabase();
     }
 }

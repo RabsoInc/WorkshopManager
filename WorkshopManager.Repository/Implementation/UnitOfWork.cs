@@ -12,14 +12,12 @@ namespace WorkshopManager.Repository.Implementation
         {
             this.db = db;
             ReleaseNoteRepository = new ReleaseNoteRepository(db);
-            SystemAttributeRepository = new SystemAttributeRepository(db);
-            SystemAttributeValueRepository = new SystemAttributeValueRepository(db);
+            CustomerRepository = new CustomerRepository(db);
         }
 
         //Interface Registration
+        public ICustomer CustomerRepository { get; private set; }
         public IReleaseNote ReleaseNoteRepository { get; private set; }
-        public ISystemAttribute SystemAttributeRepository { get; private set; }
-        public ISystemAttributeValue SystemAttributeValueRepository { get; private set; }
 
         //Global Methods
         public void UpdateDatabase()
