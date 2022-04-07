@@ -3,13 +3,13 @@ using WorkshopManager.Models.CustomerRelationshipManagement.BaseModels;
 
 namespace WorkshopManager.Models.System.BaseModels
 {
-    public class Gender
+    public class Title
     {
         [Key]
         public Guid Id { get; set; }
 
         [Required]
-        [Display(Name = "Gender")]
+        [Display(Name = "Title")]
         [MaxLength(100)]
         public string Description { get; set; }
 

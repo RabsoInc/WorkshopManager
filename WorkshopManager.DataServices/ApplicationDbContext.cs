@@ -21,5 +21,6 @@ namespace WorkshopManager.DataServices
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<ReleaseNote> ReleaseNotes { get; set; }
+        public DbSet<Title> Titles { get; set; }
     }
 }

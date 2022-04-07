@@ -19,6 +19,11 @@ namespace WorkshopManager.Models.CustomerRelationshipManagement.BaseModels
         public string LastName { get; set; }
 
         public Guid GenderId { get; set; }
+        public Guid TitleId { get; set; }
+
+
+        //Navigational Properties
         public Gender Gender { get; set; }
+        public Title Title { get; set; }
     }
 }

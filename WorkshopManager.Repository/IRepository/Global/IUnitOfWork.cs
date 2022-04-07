@@ -9,6 +9,7 @@ namespace WorkshopManager.Repository.IRepository.Global
         ICustomer CustomerRepository { get; }
         IGender GenderRepository { get; }
         IReleaseNote ReleaseNoteRepository { get; }
+        ITitle TitleRepository { get; }
         void UpdateDatabase();
     }
 }
