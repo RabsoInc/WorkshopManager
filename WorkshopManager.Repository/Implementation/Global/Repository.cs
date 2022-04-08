@@ -43,11 +43,12 @@ namespace WorkshopManager.Repository.Implementation.Global
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
+
             if (includeProperties != null)
             {
                 foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query.Include(includeProp);
+                    query = query.Include(includeProp);
                 }
             }
             return query.FirstOrDefault();

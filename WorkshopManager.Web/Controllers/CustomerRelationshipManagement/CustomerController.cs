@@ -34,6 +34,21 @@ namespace WorkshopManager.Web.Controllers.CustomerRelationshipManagement
 
             return View(view.Path, model);
         }
+        [HttpGet]
+        public IActionResult Manage(Guid customerId)
+        {
+            //Handle the redirect
+            ControllerViewMapping view = db.ControllerViewMappingRepository
+                .GetSingleRecord(x => x.Controller == "Customer" && x.Action == "Manage");
+
+            //Create the display model
+            CustomerManageViewModel model = new();
+            model.Customer = db.CustomerRepository.GetSingleRecord(x => x.Id == customerId, includeProperties: "Title,Gender");
+            model.Balance = 0.00m;
+
+            return View(view.Path, model);
+        }
+
 
         [HttpPost]
         public IActionResult Create(CustomerIndexViewModel model)
